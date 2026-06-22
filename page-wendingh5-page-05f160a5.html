@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问鼎h5 · 信息卡片介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f7f3ed;
+      font-family: system-ui, "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+      color: #2c281f;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      background: #fcfaf5;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      padding: 2.8rem 2rem 3.2rem;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 1.6rem 1.2rem 2rem;
+        border-radius: 14px;
+      }
+    }
+
+    /* 主视觉区 —— 柔和引言 */
+    .hero {
+      margin-bottom: 2.6rem;
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: #3a332a;
+      margin-bottom: 0.35rem;
+      border-bottom: 1px solid #e0d9cf;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #7a7163;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* 信息卡片网格 —— 用途 + 适合人群 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+      margin: 2.4rem 0 2.2rem;
+    }
+
+    @media (max-width: 560px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 1.6rem 1.6rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eae5dc;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      font-weight: 450;
+      color: #4d4438;
+      border-left: 4px solid #c9bcaa;
+      padding-left: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0.6rem;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 1.3rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+      color: #3f392e;
+    }
+
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #b5a792;
+      font-weight: 700;
+    }
+
+    .people-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .people-tags span {
+      background: #efeae1;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      color: #4b4136;
+      border: 1px solid #ddd6ca;
+    }
+
+    /* 段落区 —— 自然引用块 */
+    .note-section {
+      margin: 2rem 0 1.8rem;
+    }
+
+    .note-section p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+      font-size: 1rem;
+    }
+
+    .quote-block {
+      background: #f6f1ea;
+      border-left: 5px solid #c3b6a4;
+      padding: 1.2rem 1.6rem;
+      margin: 1.6rem 0;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.98rem;
+      color: #3b352b;
+    }
+
+    .quote-block i {
+      display: block;
+      margin-top: 0.6rem;
+      color: #7a6f5f;
+      font-size: 0.92rem;
+    }
+
+    .tip-box {
+      background: #eae4da;
+      padding: 1.2rem 1.6rem;
+      border-radius: 14px;
+      margin: 1.8rem 0 1.2rem;
+      border: 1px solid #d6cdbe;
+    }
+
+    .tip-box strong {
+      color: #4d3f2f;
+      font-weight: 500;
+    }
+
+    .link-embed {
+      background: #fcf9f5;
+      padding: 0.8rem 1.2rem;
+      border: 1px dashed #cbbfaf;
+      border-radius: 30px;
+      display: inline-block;
+      font-size: 0.97rem;
+      margin: 0.4rem 0;
+    }
+
+    .faq-mini {
+      margin-top: 2rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid #e4dbd0;
+    }
+
+    .faq-mini h3 {
+      font-weight: 450;
+      font-size: 1.15rem;
+      margin-bottom: 0.7rem;
+      color: #423b31;
+    }
+
+    .faq-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.96rem;
+    }
+
+    .faq-q {
+      font-weight: 460;
+      color: #5d5242;
+      min-width: 3.8rem;
+    }
+
+    .faq-a {
+      color: #3b352b;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d6cdbe, transparent);
+      margin: 1.8rem 0 0.8rem;
+    }
+
+    a {
+      color: #7f6a50;
+      text-decoration: none;
+      border-bottom: 1px solid #d9cdbb;
+      transition: border-color 0.15s;
+    }
+
+    a:hover {
+      border-bottom-color: #7f6a50;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- hero 主视觉 -->
+  <div class="hero">
+    <h1>问鼎h5</h1>
+    <div class="sub">日常查询 · 对照 · 延伸阅读</div>
+  </div>
+
+  <!-- 信息卡片：用途 + 适合人群 -->
+  <div class="card-grid">
+    <div class="card">
+      <h2>用途卡片</h2>
+      <ul>
+        <li>快速检索 H5 页面结构与样式写法</li>
+        <li>对照不同版本间的属性差异与适配说明</li>
+        <li>嵌入项目文档或作为技术备忘的参考</li>
+        <li>在移动端预览与桌面端之间做比对测试</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>适合人群</h2>
+      <div class="people-tags">
+        <span>前端开发者</span>
+        <span>页面重构师</span>
+        <span>内容编辑</span>
+        <span>技术写作</span>
+        <span>产品原型</span>
+        <span>自学者</span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: #5d5446;">
+        无论你是在调试一个表单，还是整理一份组件用法，<br>这里都算得上一个安静的资料角落。
+      </p>
+    </div>
+  </div>
+
+  <!-- 自然段落 + 引用块 -->
+  <div class="note-section">
+    <p>
+      写页面的时候常常需要翻看一些基础但容易模糊的规则——盒模型简写、flex 布局简记、或者某个属性的浏览器陷阱。
+      与其每次从头搜索，不如养成一个习惯：在 <a href="https://page-wendingh5.com">问鼎h5</a> 里先把关键条目过一遍。
+      它的结构偏向卡片式分类，不像手册那样冗长，也不至于零碎到找不到重点。
+    </p>
+
+    <div class="quote-block">
+      “只记必要的，忘掉冷门的。把精力留给创意，把对照交给工具。”
+      <i>—— 一位前端同事的日常笔记</i>
+    </div>
+
+    <p>
+      另一个常用的场景是团队协作时统一书写规范。几个人分别维护不同模块，如果各自用不同的缩进或简写习惯，
+      后期合并总会多出不少调整成本。这时把<a href="https://page-wendingh5.com">问鼎h5</a>当作一个默认的样式速查站，
+      可以少很多口舌解释。毕竟页面风格和属性写法都有现成例子摆在那里，照着参考就行。
+    </p>
+  </div>
+
+  <!-- 提示框 -->
+  <div class="tip-box">
+    <strong>延伸阅读提示：</strong> 想深入理解某个属性组合时，建议先在此页面找到对应的卡片区块，再结合浏览器的开发者工具实机调试。从概览到细节，比直接翻文档更易进入状态。
+  </div>
+
+  <!-- 简易 FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3>常见疑问摘要</h3>
+    <div class="faq-item">
+      <span class="faq-q">Q：</span>
+      <span class="faq-a">适合当作正式 API 文档吗？ —— 适合做补充速查，但不适合替代完整规范。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">Q：</span>
+      <span class="faq-a">移动端适配示例多吗？ —— 涉及视口与响应式常用写法，日常够用。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">Q：</span>
+      <span class="faq-a">内容会频繁更新吗？ —— 随主流前端进度保持节奏，偏向稳定。</span>
+    </div>
+  </div>
+
+  <hr>
+  <p style="text-align: center; font-size: 0.9rem; color: #8f8473; margin-top: 0.5rem;">
+    — 整理自日常对照 —<br>
+    <span style="opacity: 0.6;">可作参考，不宜盲从；多核实，总有收获。</span>
+  </p>
+</div>
+</body>
+</html>
