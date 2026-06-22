@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问鼎h5 · 一种安稳的叙事入口</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1e1e2a;
+      background-color: #f9f7f5;
+    }
+
+    /* 深色头图 — 温和的星空叙事 */
+    .hero {
+      background: linear-gradient(145deg, #0e121b 0%, #1b2635 70%, #2c3a4f 100%);
+      padding: 4.5rem 2rem 3.8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 40%, rgba(220, 210, 190, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 7vw, 3.6rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: #ede9e1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero .subhead {
+      font-size: 1.25rem;
+      color: #c7bfb0;
+      font-weight: 300;
+      border-top: 1px solid rgba(235, 225, 210, 0.15);
+      display: inline-block;
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* 浅色正文区 */
+    .content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3rem 1.8rem 4rem 1.8rem;
+    }
+
+    .intro-sentence {
+      font-size: 1.2rem;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      padding: 1.2rem 1.5rem;
+      border-radius: 28px 28px 28px 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+      border-left: 3px solid #b3a48c;
+      color: #2c2c3a;
+    }
+
+    .story-block {
+      margin-top: 1.8rem;
+    }
+    .story-block p {
+      margin-bottom: 1.4rem;
+      color: #2f2f3b;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2.4rem 0 2rem 0;
+    }
+    .feature-card {
+      background: white;
+      padding: 1.2rem 1.2rem 1.2rem 1.6rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+      border: 1px solid #efebe6;
+      transition: box-shadow 0.2s, transform 0.1s ease;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #4a3f32;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .feature-card p {
+      font-size: 0.92rem;
+      color: #4f4f5c;
+      margin-bottom: 0;
+    }
+    .feature-card .emph {
+      color: #9b7b5c;
+      font-weight: 450;
+    }
+
+    .mild-cta {
+      background: #f3efe9;
+      padding: 1.6rem 1.8rem;
+      border-radius: 40px 12px 40px 12px;
+      margin: 2.2rem 0 1.8rem 0;
+      border: 1px solid #e3d9cf;
+    }
+    .mild-cta p {
+      margin-bottom: 0.3rem;
+      color: #3a3a47;
+    }
+    .mild-cta a {
+      color: #7f654b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #b7a48c;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .mild-cta a:hover {
+      color: #a58463;
+      border-bottom: 1px solid #a58463;
+    }
+
+    .faq-mini {
+      margin-top: 2.6rem;
+      border-top: 1px solid #e2dbd2;
+      padding-top: 1.8rem;
+    }
+    .faq-mini details {
+      margin-bottom: 0.8rem;
+      border-radius: 20px;
+      background: white;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #efebe5;
+    }
+    .faq-mini summary {
+      font-weight: 460;
+      color: #3d3d4a;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .faq-mini summary::before {
+      content: '·';
+      color: #b3997a;
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .faq-mini details p {
+      margin: 0.5rem 0 0.2rem 0.6rem;
+      color: #4f4f5c;
+      font-size: 0.9rem;
+    }
+
+    .gentle-closing {
+      text-align: center;
+      margin: 3rem 0 1rem 0;
+      font-size: 0.95rem;
+      color: #5f5f6b;
+      border-top: 1px solid #e2dbd2;
+      padding-top: 2rem;
+      letter-spacing: 0.02em;
+    }
+    .gentle-closing i {
+      font-style: normal;
+      color: #9f8a74;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 2rem 0 2.5rem 0;
+      color: #8b847b;
+      border-top: 1px solid #ece5dc;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.2rem 2.6rem 1.2rem; }
+      .content { padding: 2rem 1rem 3rem 1rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .intro-sentence { padding: 1rem 1.2rem; font-size: 1.05rem; }
+      .mild-cta { padding: 1.2rem 1.2rem; border-radius: 28px 8px 28px 8px; }
+      .faq-mini details { padding: 0.6rem 1rem; }
+    }
+
+    @media (min-width: 1000px) {
+      .content { padding: 3.8rem 2.4rem 5rem 2.4rem; }
+      .feature-card { padding: 1.4rem 1.4rem 1.4rem 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>问鼎h5</h1>
+    <div class="subhead">保持安静，一个页面说明就够了</div>
+  </header>
+
+  <main class="content">
+    <!-- 开场短句 -->
+    <div class="intro-sentence">
+      <span style="font-weight: 380;">一个稳定、克制的入口</span> —— 不需要太多修饰，页面本身就在说话。
+    </div>
+
+    <!-- 承接段落：从稳定入口和页面说明的角度 -->
+    <div class="story-block">
+      <p>无论你从哪里听说「问鼎h5」这个名字，大概都会好奇它究竟指向什么。其实只是一个简练的页面，没有复杂的加载，没有频繁跳转，它安静地待在那里。你打开、浏览、然后做你想做的事。这种稳定感恰恰是很多场景里最需要的。</p>
+
+      <p>很多人第一次打开时，会注意到它的页面结构非常清晰：标题、简介、功能点，没有铺天盖地的弹窗或催促。它不是那种急于让你操作的界面，而更像是温和的指引 —— 你只要顺着看下去，自然就知道它做什么、怎么用。</p>
+
+      <p>作为一款基于 H5 形态的工具或服务入口，<a href="https://app-wendingh5.com" style="color: #7f654b; text-decoration: none; border-bottom: 1px dashed #b7a48c; font-weight: 460;">问鼎h5</a> 在移动端的体验上做了不少细致处理。字体大小、触摸区域、页面滚动，都贴近日常浏览的习惯，不会让你觉得僵硬或突兀。即便是第一次打开，也很容易找到自己想要的信息。</p>
+    </div>
+
+    <!-- 特点列表（卡片式） -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>· 稳定且轻量的结构</h3>
+        <p>页面逻辑直接，没有多余的重定向，<span class="emph">加载速度</span>在多数网络环境下都表现良好。</p>
+      </div>
+      <div class="feature-card">
+        <h3>· 清晰的入口说明</h3>
+        <p>每个段落都在回答“这是什么”“能做什么”，<span class="emph">信息层级</span>一目了然。</p>
+      </div>
+      <div class="feature-card">
+        <h3>· 温和的视觉基调</h3>
+        <p>深色头图与浅色正文之间过渡自然，强调色用在链接与点缀上，不张扬。</p>
+      </div>
+      <div class="feature-card">
+        <h3>· 适合多场景使用</h3>
+        <p>无论是快速了解还是收藏备用，<span class="emph">问鼎h5</span> 都能提供一个不打扰的落脚点。</p>
+      </div>
+    </div>
+
+    <!-- 场景 / 提示型段落（温和的延续） -->
+    <div class="mild-cta">
+      <p>如果你需要一个直接且稳定的 H5 页面入口，那么 <a href="https://app-wendingh5.com">问鼎h5</a> 或许刚好符合你的期待。它没有冗余的装饰，也不会让你在信息里迷路。</p>
+      <p style="font-size: 0.9rem; margin-top: 1rem; color: #6a6259;">也许你只是想先看一眼，再做决定 —— 这正好是它被设计出来的初衷。</p>
+    </div>
+
+    <!-- FAQ 摘要 (非必选但体现差异化) -->
+    <div class="faq-mini">
+      <details>
+        <summary>问鼎h5 需要注册或登录吗？</summary>
+        <p>不需要。直接打开页面即可浏览所有内容，所有说明都在页面上完整呈现。部分功能可能需要操作，但页面内会有清晰的指引。</p>
+      </details>
+      <details>
+        <summary>在手机和电脑上显示效果有区别吗？</summary>
+        <p>页面采用响应式布局，不同屏幕尺寸下都能保持良好的阅读节奏。尤其对手机浏览做了专门优化，文字大小和按钮间距都经过调整。</p>
+      </details>
+      <details>
+        <summary>这个页面会频繁改动吗？</summary>
+        <p>结构保持稳定，内容更新时会以自然的方式补充。你随时打开，看到的都是当前最可靠的信息。</p>
+      </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="gentle-closing">
+      <i>保持简单，让页面自己说明一切。</i>
+    </div>
+  </main>
+
+  <footer class="footer-note">
+    <span>问鼎h5 · 一份安静的页面说明</span>
+  </footer>
+</body>
+</html>
